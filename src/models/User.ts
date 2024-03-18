@@ -1,7 +1,7 @@
 import { Schema, Types, model, Model } from "mongoose"
-import { Users } from '../interfaces/Users.interface'
+import { UsersInterface } from '../interfaces/Users.interface'
 
-const UserSchema = new Schema<Users>(
+const UserSchema = new Schema<UsersInterface>(
     {
         name: {
             required: true,

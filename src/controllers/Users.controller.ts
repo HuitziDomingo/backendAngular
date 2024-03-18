@@ -1,6 +1,8 @@
 import { Request, Response } from "express"
 import { User } from "../services/User.service"
 import { Errors } from "../utils/error.handle"
+import UserModel from "../models/User"
+import { UsersInterface } from "../interfaces/Users.interface"
 
 export class Users {
 
@@ -16,11 +18,16 @@ export class Users {
 
     static async createUser({ body }: Request, res: Response) {
         try {
-            let user = await User.createUsers(body)
-            res.send(user)
-        } catch (error) {
-            Errors.handleHTTP(res, 'ERROR_CREATE_USER', error)
+            let userExist = await UserModel.findOne<UsersInterface>({email: body.email})
+            if (userExist) 
+                return Errors.handleHTTP(res, 'USUARIO_YA_EXISTE')
+            else {
+                let user = await User.createUsers(body)
+                return res.send(user)
+            }
 
+        } catch (error) {
+            return Errors.handleHTTP(res, 'ERROR_CREATE_USER', error)
         }
 
     }

@@ -1,4 +1,4 @@
-import { Users } from "../interfaces/Users.interface"
+import { UsersInterface } from "../interfaces/Users.interface"
 import UserModel from "../models/User"
 
 export class User {
@@ -10,11 +10,10 @@ export class User {
     }
 
 
-    static async createUsers(user: Users) {
+    static async createUsers(user: UsersInterface) {
         let response = await UserModel.create(user)
         return response
     }
-
 
 
 }

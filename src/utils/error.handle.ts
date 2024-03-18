@@ -1,10 +1,9 @@
-import { Response } from 'express'
+import { Response, Request } from 'express'
 
 export class Errors {
 
 
-
-    static handleHTTP(res: Response, error: string, errorRaw?: any) {
+    static async handleHTTP(res: Response, error: string, errorRaw?: any) {
         console.log(errorRaw)
         res.status(500).send({ error })
     }
