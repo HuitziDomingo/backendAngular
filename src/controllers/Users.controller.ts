@@ -5,6 +5,8 @@ import UserModel from "../models/User"
 import { UsersInterface } from "../interfaces/Users.interface"
 
 
+
+
 export class Users {
 
     static async getUsers(req: Request, res: Response) {
@@ -23,6 +25,7 @@ export class Users {
             if (userExist)
                 return Errors.handleHTTP(res, 'El usuario ya existe.')
             else {
+                
                 let user = await User.createUsers(req.body)
                 return res.send(user)
             }
