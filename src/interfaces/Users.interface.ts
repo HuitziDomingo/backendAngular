@@ -5,4 +5,5 @@ export interface UsersInterface {
     img: string
     role: string
     google: boolean
+    uid?: object
 }

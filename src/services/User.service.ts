@@ -18,4 +18,14 @@ export class User {
     }
 
 
+    static async updateUser(){
+        return console.log('updateUser service')
+    }
+
+
+    static async deleteUser(){
+        return console.log('deleteUser service')
+    }
+
+
 }

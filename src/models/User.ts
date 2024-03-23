@@ -16,15 +16,15 @@ const UserSchema = new Schema<UsersInterface>(
             unique: true,
             type: String,
         },
-        img:{
+        img: {
             type: String,
         },
-        role:{
+        role: {
             required: true,
             default: 'USER_ROLE',
             type: String,
         },
-        google:{
+        google: {
             default: false,
             type: Boolean,
         },
@@ -34,5 +34,12 @@ const UserSchema = new Schema<UsersInterface>(
         versionKey: false,
     },
 )
+
+UserSchema.method('toJSON', function () {
+    const { _id, password, ...object } = this.toObject()
+    object.uid = _id
+    return object
+})
+
 const UserModel = model('user', UserSchema)
 export default UserModel

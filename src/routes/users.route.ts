@@ -11,6 +11,12 @@ router.post('/users', [
     check('password', "El password es obligatorio.").not().isEmpty(),
     check('email', "El email es obligatorio.").isEmail(),
     ValidateFields.validateFields
-],Users.createUser)
+], Users.createUser)
+router.put('/users/:id',
+    check('name', "El nombre es obligatorio.").not().isEmpty(),
+    check('role', "El role es obligatorio.").not().isEmpty(),
+    check('email', "El email es obligatorio.").isEmail(),
+    Users.updateUser)
+router.delete('/users/:id', Users.deleteUser)
 
 export default router
